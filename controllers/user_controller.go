@@ -18,6 +18,16 @@ type CustomClaim struct {
 	jwt.RegisteredClaims
 }
 
+// Login godoc
+// @Description Se connecter (pour obtenir un token JWT)
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Param user body models.User true "Identifiants utilisateur (email, password)"
+// @Success 200 {object} map[string]string "Token JWT"
+// @Failure 400 {object} map[string]string "Identifiants invalides"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Router /users/login [post]
 func Login(context *gin.Context) {
 	var user models.User
 
@@ -60,6 +70,16 @@ func Login(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"token": tokenString})
 }
 
+// Register godoc
+// @Description Créer un nouveau compte utilisateur
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Param user body models.User true "Données utilisateur (email, password)"
+// @Success 201 {object} map[string]string "Message de succès"
+// @Failure 400 {object} map[string]string "Données invalides"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Router /users/register [post]
 func Register(context *gin.Context) {
 	var user models.User
 

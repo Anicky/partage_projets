@@ -44,6 +44,17 @@ definitions:
     - description
     - name
     type: object
+  models.ProjectUpdateInput:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      skills:
+        items:
+          type: string
+        type: array
+    type: object
   models.User:
     properties:
       comments:
@@ -75,6 +86,41 @@ info:
   title: Partage de projets
   version: "1.0"
 paths:
+  /comments:
+    post:
+      consumes:
+      - application/json
+      description: Ajouter un commentaire à un projet
+      parameters:
+      - description: Données du commentaire
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.Comment'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Données invalides
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      tags:
+      - Comments
   /projects:
     get:
       description: Récupérer tous les projets
@@ -91,6 +137,272 @@ paths:
       - BearerAuth: []
       tags:
       - Projects
+    post:
+      consumes:
+      - application/json
+      description: Créer un nouveau projet
+      parameters:
+      - description: Données du projet
+        in: body
+        name: project
+        required: true
+        schema:
+          $ref: '#/definitions/models.Project'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Project'
+        "400":
+          description: Données invalides
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      tags:
+      - Projects
+  /projects/{id}:
+    delete:
+      description: Supprimer un projet
+      parameters:
+      - description: ID du projet
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Message de succès
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: ID invalide
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Projet non trouvé
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      tags:
+      - Projects
+    get:
+      description: Récupérer un projet par son ID
+      parameters:
+      - description: ID du projet
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Project'
+        "400":
+          description: ID invalide
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Projet non trouvé
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      tags:
+      - Projects
+    put:
+      consumes:
+      - application/json
+      description: Mettre à jour un projet existant
+      parameters:
+      - description: ID du projet
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Données de mise à jour
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.ProjectUpdateInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Project'
+        "400":
+          description: Données invalides
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Projet non trouvé
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      tags:
+      - Projects
+  /projects/{id}/like:
+    put:
+      description: Liker ou déliker un projet
+      parameters:
+      - description: ID du projet
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Message de succès
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: ID invalide
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Projet non trouvé
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      tags:
+      - Projects
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: Se connecter (pour obtenir un token JWT)
+      parameters:
+      - description: Identifiants utilisateur (email, password)
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Token JWT
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Identifiants invalides
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      tags:
+      - Users
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      description: Créer un nouveau compte utilisateur
+      parameters:
+      - description: Données utilisateur (email, password)
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Message de succès
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Données invalides
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Erreur interne
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      tags:
+      - Users
 securityDefinitions:
   BearerAuth:
     in: header

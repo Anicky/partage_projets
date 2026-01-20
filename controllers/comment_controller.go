@@ -9,6 +9,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// PostComment godoc
+// @Description Ajouter un commentaire à un projet
+// @Tags Comments
+// @Accept json
+// @Produce json
+// @Param comment body models.Comment true "Données du commentaire"
+// @Success 201 {object} models.Comment
+// @Failure 400 {object} map[string]string "Données invalides"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Security BearerAuth
+// @Router /comments [post]
 func PostComment(context *gin.Context) {
 	var comment models.Comment
 

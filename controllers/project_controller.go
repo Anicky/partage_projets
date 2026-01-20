@@ -30,6 +30,17 @@ func GetProjects(context *gin.Context) {
 	context.JSON(http.StatusOK, projects)
 }
 
+// GetProject godoc
+// @Description Récupérer un projet par son ID
+// @Tags Projects
+// @Produce json
+// @Param id path int true "ID du projet"
+// @Success 200 {object} models.Project
+// @Failure 400 {object} map[string]string "ID invalide"
+// @Failure 404 {object} map[string]string "Projet non trouvé"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Security BearerAuth
+// @Router /projects/{id} [get]
 func GetProject(context *gin.Context) {
 	project, err := models.FindProjectById(context)
 
@@ -38,6 +49,17 @@ func GetProject(context *gin.Context) {
 	}
 }
 
+// PostProject godoc
+// @Description Créer un nouveau projet
+// @Tags Projects
+// @Accept json
+// @Produce json
+// @Param project body models.Project true "Données du projet"
+// @Success 201 {object} models.Project
+// @Failure 400 {object} map[string]string "Données invalides"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Security BearerAuth
+// @Router /projects [post]
 func PostProject(context *gin.Context) {
 	var project models.Project
 
@@ -65,6 +87,19 @@ func PostProject(context *gin.Context) {
 	context.JSON(http.StatusCreated, project)
 }
 
+// PutProject godoc
+// @Description Mettre à jour un projet existant
+// @Tags Projects
+// @Accept json
+// @Produce json
+// @Param id path int true "ID du projet"
+// @Param input body models.ProjectUpdateInput true "Données de mise à jour"
+// @Success 200 {object} models.Project
+// @Failure 400 {object} map[string]string "Données invalides"
+// @Failure 404 {object} map[string]string "Projet non trouvé"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Security BearerAuth
+// @Router /projects/{id} [put]
 func PutProject(context *gin.Context) {
 	project, err := models.FindProjectById(context)
 
@@ -125,6 +160,17 @@ func PutProject(context *gin.Context) {
 	}
 }
 
+// DeleteProject godoc
+// @Description Supprimer un projet
+// @Tags Projects
+// @Produce json
+// @Param id path int true "ID du projet"
+// @Success 200 {object} map[string]string "Message de succès"
+// @Failure 400 {object} map[string]string "ID invalide"
+// @Failure 404 {object} map[string]string "Projet non trouvé"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Security BearerAuth
+// @Router /projects/{id} [delete]
 func DeleteProject(context *gin.Context) {
 	project, err := models.FindProjectById(context)
 
@@ -139,6 +185,17 @@ func DeleteProject(context *gin.Context) {
 	}
 }
 
+// LikeProject godoc
+// @Description Liker ou déliker un projet
+// @Tags Projects
+// @Produce json
+// @Param id path int true "ID du projet"
+// @Success 200 {object} map[string]string "Message de succès"
+// @Failure 400 {object} map[string]string "ID invalide"
+// @Failure 404 {object} map[string]string "Projet non trouvé"
+// @Failure 500 {object} map[string]string "Erreur interne"
+// @Security BearerAuth
+// @Router /projects/{id}/like [put]
 func LikeProject(context *gin.Context) {
 	var user models.User
 
