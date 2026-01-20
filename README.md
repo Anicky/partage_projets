@@ -22,8 +22,8 @@ Ce projet permet aux utilisateurs de partager leurs projets, de les consulter, e
 
 ### Prérequis
 
-- **Go**
-- **MySQL**
+- **Go** (>= 1.25.0)
+- **PostgresL**
 
 ### Configuration des variables d'environnement
 
