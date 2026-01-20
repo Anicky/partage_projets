@@ -18,6 +18,12 @@ Ce projet permet aux utilisateurs de partager leurs projets, de les consulter, e
 - **Commentaires**
   - Ajout d'un commentaire sur un projet
 
+## Déploiement de l'application
+
+L'application a été déployée sur Render, à l'adresse suivante : https://partage-projets.onrender.com
+
+Il est possible d'accéder au swagger à cette URL : https://partage-projets.onrender.com/swagger/index.html
+
 ## Installation et configuration
 
 ### Prérequis
