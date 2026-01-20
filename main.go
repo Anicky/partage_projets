@@ -1,9 +1,5 @@
 package main
 
-// @TODO: uploader ce projet sur github
-// @TODO: envoyer un lien github avec le projet
-// @TODO: regarder "render" pour la mise en ligne
-
 import (
 	"fmt"
 	"log"
