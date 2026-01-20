@@ -37,7 +37,9 @@ func main() {
 
 	err = godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file: ", err)
+		// If .env file is not found, it is not necessarily an error.
+		// With Render, environment variables are injected; there is no need for .env file.
+		log.Print("Unable to find .env file.")
 	}
 
 	router.GET("/status", func(context *gin.Context) {
