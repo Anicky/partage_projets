@@ -87,15 +87,13 @@
               }
             ],
             "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "image",
-                  "type": "file",
-                  "uuid": "c7bf9018-bc96-4c02-94d2-9f65761380ea",
-                  "src": "postman-cloud:///1f0f05d3-eba8-4000-8b5b-721f403cf516"
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Projet 1\",\r\n    \"description\": \"Description projet 1\",\r\n    \"skills\": [\r\n        \"HTML\",\r\n        \"CSS\"\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
                 }
-              ]
+              }
             },
             "url": {
               "raw": "{{domainUrl}}/projects",
@@ -224,7 +222,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"user4@test.com\",\r\n    \"password\": \"User.1234\"\r\n}",
+              "raw": "{\r\n    \"email\": \"user1@test.com\",\r\n    \"password\": \"User.1234\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -313,7 +311,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"project_id\": 1,\r\n    \"content\": \"Commentaire 2 sur Projet 1\"\r\n}",
+              "raw": "{\r\n    \"project_id\": 1,\r\n    \"content\": \"Commentaire 1 sur Projet 1\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
