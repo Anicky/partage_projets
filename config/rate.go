@@ -1,0 +1,22 @@
+package config
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"golang.org/x/time/rate"
+)
+
+func RateLimit(rps int) gin.HandlerFunc {
+	limiter := rate.NewLimiter(rate.Limit(rps), rps)
+
+	return func(context *gin.Context) {
+		if !limiter.Allow() {
+			context.AbortWithStatusJSON(http.StatusTooManyRequests, gin.H{"error": "Too many requests."})
+
+			return
+		}
+
+		context.Next()
+	}
+}

@@ -1,0 +1,12 @@
+# Uploads
+uploads/
+
+# Testing
+cover.out
+cover.html
+
+# env file
+.env
+
+# Editor/IDE
+.idea/

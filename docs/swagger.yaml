@@ -1,0 +1,99 @@
+definitions:
+  models.Comment:
+    properties:
+      content:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: integer
+      project_id:
+        type: integer
+      updatedAt:
+        type: string
+      userID:
+        type: integer
+    type: object
+  models.Project:
+    properties:
+      comments:
+        items:
+          $ref: '#/definitions/models.Comment'
+        type: array
+      createdAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image:
+        type: string
+      likes:
+        items:
+          $ref: '#/definitions/models.User'
+        type: array
+      name:
+        type: string
+      skills:
+        items:
+          type: string
+        type: array
+      updatedAt:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  models.User:
+    properties:
+      comments:
+        items:
+          $ref: '#/definitions/models.Comment'
+        type: array
+      createdAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      likedProjects:
+        items:
+          $ref: '#/definitions/models.Project'
+        type: array
+      password:
+        minLength: 8
+        type: string
+      updatedAt:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+info:
+  contact: {}
+  description: Description du projet de partage de projets
+  title: Partage de projets
+  version: "1.0"
+paths:
+  /projects:
+    get:
+      description: Récupérer tous les projets
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Project'
+            type: array
+      security:
+      - BearerAuth: []
+      tags:
+      - Projects
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
