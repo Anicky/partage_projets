@@ -39,7 +39,7 @@ func main() {
 	if err != nil {
 		// If .env file is not found, it is not necessarily an error.
 		// With Render, environment variables are injected; there is no need for .env file.
-		log.Print("Unable to find .env file.")
+		log.Print("Unable to find .env file: ", err)
 	}
 
 	router.GET("/status", func(context *gin.Context) {
