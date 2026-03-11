@@ -52,4 +52,4 @@ Une fois le serveur lancé, vous pouvez accéder à la documentation Swagger à 
 
 ### Postman
 
-Vous pouvez importer la collection Postman en utilisant le fichier `postman_collection.json` placé à la racine du projet.
+Vous pouvez importer la collection Postman en utilisant le fichier `postman_collection.json` placé dans le dossier `docs` du projet.
