@@ -29,7 +29,7 @@ Il est possible d'accéder au swagger à cette URL : https://partage-projets.onr
 ### Prérequis
 
 - **Go** (>= 1.25.0)
-- **PostgresL**
+- **PostgreSQL**
 
 ### Configuration des variables d'environnement
 
