@@ -46,11 +46,15 @@ func main() {
 		context.JSON(http.StatusOK, gin.H{"message": "OK"})
 	})
 
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	router.GET("/", func(context *gin.Context) {
+		context.Redirect(http.StatusMovedPermanently, "/swagger/index.html")
+	})
+
 	routes.ProjectRoutes(router)
 	routes.UserRoutes(router)
 	routes.CommentRoutes(router)
-
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	config.ConnectDB()
 

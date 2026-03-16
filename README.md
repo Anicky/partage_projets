@@ -22,8 +22,6 @@ Ce projet permet aux utilisateurs de partager leurs projets, de les consulter, e
 
 L'application a été déployée sur Render, à l'adresse suivante : https://partage-projets.onrender.com
 
-Il est possible d'accéder au swagger à cette URL : https://partage-projets.onrender.com/swagger/index.html
-
 ## Installation et configuration
 
 ### Prérequis
@@ -47,8 +45,7 @@ Le serveur démarrera par défaut sur `http://localhost:8080`.
 
 ### Swagger
 
-Une fois le serveur lancé, vous pouvez accéder à la documentation Swagger à l'adresse suivante :
-`http://localhost:8080/swagger/index.html`
+Une fois le serveur lancé, vous pouvez accéder à la documentation Swagger directement depuis `http://localhost:8080` (redirection automatique vers `http://localhost:8080/swagger/index.html`).
 
 ### Postman
 
